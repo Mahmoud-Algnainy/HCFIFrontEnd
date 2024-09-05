@@ -1,0 +1,13 @@
+.btn.btn-primary {
+    background: #5ceafc !important;
+    border: 1px solid #44698d !important;
+    color: #fff !important;
+}
+
+.checkbox-primary {
+    color: #48448d !important;
+}
+a {
+    transition: .3s all ease;
+    color: #48448d;
+}

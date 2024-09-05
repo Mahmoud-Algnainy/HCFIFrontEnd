@@ -1,0 +1,65 @@
+
+
+<div class="container">
+  <form #employeeForm="ngForm" class="update-form" (ngSubmit)="saveEmployee(employeeForm)">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="sarfId">Sarf ID:</label>
+        <input id="sarfId" #sarfId="ngModel" [(ngModel)]="selectedEmployee.sarf_Id" name="sarfId" required>
+        <div *ngIf="sarfId?.invalid && sarfId?.touched">
+          Sarf ID is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fullName">Full Name:</label>
+        <input id="fullName" #fullName="ngModel"[(ngModel)]="selectedEmployee.fullName" name="fullName" required>
+        <div *ngIf="fullName?.invalid && fullName?.touched">
+          Full Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nationalId">National ID:</label>
+        <input id="nationalId" #nationalId="ngModel"[(ngModel)]="selectedEmployee.nationalId" name="nationalId" required>
+        <div *ngIf="nationalId?.invalid && nationalId?.touched">
+          National ID is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ta2meenNo">Ta2meen No:</label>
+        <input id="ta2meenNo" #ta2meenNo="ngModel"[(ngModel)]="selectedEmployee.ta2meen_No" name="ta2meenNo" required>
+        <div *ngIf="ta2meenNo.invalid && ta2meenNo?.touched">
+          Ta2meen No is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="bankAccNo">Bank Acc No:</label>
+        <input id="bankAccNo" #bankAccNo="ngModel" [(ngModel)]="selectedEmployee.bankAcc_No" name="bankAccNo" required>
+        <div *ngIf="bankAccNo?.invalid && bankAccNo?.touched">
+          Bank Account No is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nationality">Nationality:</label>
+        <input id="nationality" #nationality="ngModel" [(ngModel)]="selectedEmployee.nationality" name="nationality" required>
+        <div *ngIf="nationality?.invalid && nationality?.touched">
+          Nationality is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input id="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="selectedEmployee.phoneNumber" name="phoneNumber"  required pattern="[0-9]{10}">
+        <div *ngIf="phoneNumber?.invalid && phoneNumber?.touched">
+          <!-- <div *ngIf="phoneNumber?.errors?.required">Phone Number is required.</div>
+          <div *ngIf="phoneNumber?.errors?.pattern">Phone Number must be 10 digits.</div> -->
+        </div>
+      </div>
+    </div>
+    <button type="submit">Add</button>
+  </form>
+</div>

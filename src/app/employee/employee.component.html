@@ -1,0 +1,118 @@
+<div class="container">
+    <h2>Employee Management</h2>
+    <input type="text" [(ngModel)]="searchQuery" (input)="search()" placeholder="Search..." class="search-bar">
+     
+    <form #updateForm *ngIf="selectedEmployee" class="update-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="sarfId">Sarf ID:</label>
+          <input id="sarfId" [(ngModel)]="selectedEmployee.sarf_Id" name="sarfId">
+        </div>
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input id="fullName" [(ngModel)]="selectedEmployee.fullName" name="fullName" >
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nationalId">National ID:</label>
+          <input id="nationalId" [(ngModel)]="selectedEmployee.nationalId" name="nationalId">
+        </div>
+        <div class="form-group">
+          <label for="ta2meenNo">Ta2meen No:</label>
+          <input id="ta2meenNo" [(ngModel)]="selectedEmployee.ta2meen_No" name="ta2meenNo">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="bankAccNo">Bank Acc No:</label>
+          <input id="bankAccNo" [(ngModel)]="selectedEmployee.bankAcc_No" name="bankAccNo">
+        </div>
+        <div class="form-group">
+          <label for="nationality">Nationality:</label>
+          <input id="nationality" [(ngModel)]="selectedEmployee.nationality" name="nationality">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number:</label>
+          <input id="phoneNumber" [(ngModel)]="selectedEmployee.phoneNumber" name="phoneNumber">
+        </div>
+      </div>
+       <button id="update" type="button" (click)="updateEmployee()">Update</button> 
+    </form>
+  
+    <div *ngIf="loading" class="loading-spinner"></div>
+
+    <div *ngIf="!loading" class="upload-container-upload">   
+      <div class="form-group-upload">
+        <label id="fileLable" for="fileInput">Upload employee File:</label>
+        <input type="file" id="fileInput" (change)="onFileChange($event)" accept=".xlsx, .xls" />
+      </div>
+      <button class="button-upload" (click)="uploadExcel()" [disabled]="loading">
+        {{ loading ? 'Uploading...' : 'Upload' }}
+      </button>
+    </div>
+
+    <div *ngIf="!loading">
+      <button *ngIf="selectedEmployees.length > 0" 
+        id="deleteSelected" 
+        (click)="deleteSelectedEmployees()" 
+        [disabled]="!selectedEmployees.length">
+        Delete Selected Employees
+      </button>
+      <button id="deleteAll" (click)="deleteAllEmployees()">Delete All Employees</button>
+    </div>
+
+<!-- <div class="container">
+
+  <h3>Upload Employee Excel</h3>
+  <input type="file" (change)="onFileChange($event)" />
+  <button (click)="uploadExcel()">Upload Excel</button>
+
+</div> -->
+
+  
+  
+     <table *ngIf="!loading" class="employee-table">
+      <thead>
+        <tr>
+          <th><input type="checkbox" (change)="selectAll($event)" [checked]="allSelected"></th>
+          <th>ID</th>
+          <th>Sarf ID</th>
+          <th style="text-align: center;">Full Name</th>
+          <th>National ID</th>
+          <th>Ta2meen No</th>
+          <th>Bank Acc No</th>
+          <th>Nationality</th>
+          <th>Phone Number</th>
+          <th style="text-align: center;">Actions</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let employee of filteredEmployees;let i=index"> -->
+          <tr *ngFor="let employee of filteredEmployees | paginate: { itemsPerPage: 20, currentPage: page }; let i = index">
+
+          <!-- <td>{{i+1}}</td> -->
+          <td><input type="checkbox" [(ngModel)]="employee.selected" (change)="onCheckboxChange()"></td>
+          <td>{{ (page - 1) * 20 + i + 1 }}</td>
+          <td>{{employee.sarf_Id}}</td>
+          <td>{{employee.fullName}}</td>
+          <td>{{employee.nationalId}}</td>
+          <td>{{employee.ta2meen_No}}</td>
+          <td>{{employee.bankAcc_No}}</td>
+          <td>{{employee.nationality}}</td>
+          <td>{{employee.phoneNumber}}</td>
+           <td>
+            <button id="update" (click)="selectEmployee(employee)">Update</button>
+            <button id="delete" (click)="deleteEmployee(employee.id,i)">Delete</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+     <!-- Pagination Controls -->
+  <pagination-controls *ngIf="!loading"  (pageChange)="page = $event"></pagination-controls>
+  </div>
+  

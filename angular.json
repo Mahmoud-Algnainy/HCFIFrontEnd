@@ -14,6 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/hcfiweb-site",
+            "buildOptimizer": true,
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -25,9 +26,19 @@
               "src/assets"
             ],
             "styles": [
+
+
+             "src/assets/css/style.css",
+             "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/popper.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/main.js"
+
+            ]
           },
           "configurations": {
             "production": {
@@ -94,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "cf84a279-8e4e-473e-b8ae-f3540efcc463"
   }
 }

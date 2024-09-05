@@ -1,0 +1,78 @@
+<div class="container">
+    <h2>Employee Management</h2>
+    <input type="text" [(ngModel)]="searchQuery" (input)="search()" placeholder="Search..." class="search-bar">
+    <!-- <button type="button" routerLink="/Add-Employee">Add Employee</button> -->
+
+    <!-- <button routerLink="/Add-Employee" type="button" class="btn btn-primary btn-lg">Add Employee</button>  -->
+     <form *ngIf="selectedEmployee" class="update-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="sarfId">Sarf ID:</label>
+          <input id="sarfId" [(ngModel)]="selectedEmployee.sarf_Id" name="sarfId">
+        </div>
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input id="fullName" [(ngModel)]="selectedEmployee.fullName" name="fullName" disabled>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nationalId">National ID:</label>
+          <input id="nationalId" [(ngModel)]="selectedEmployee.nationalId" name="nationalId">
+        </div>
+        <div class="form-group">
+          <label for="ta2meenNo">Ta2meen No:</label>
+          <input id="ta2meenNo" [(ngModel)]="selectedEmployee.ta2meen_No" name="ta2meenNo">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="bankAccNo">Bank Acc No:</label>
+          <input id="bankAccNo" [(ngModel)]="selectedEmployee.bankAcc_No" name="bankAccNo">
+        </div>
+        <div class="form-group">
+          <label for="nationality">Nationality:</label>
+          <input id="nationality" [(ngModel)]="selectedEmployee.nationality" name="nationality">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number:</label>
+          <input id="phoneNumber" [(ngModel)]="selectedEmployee.phoneNumber" name="phoneNumber">
+        </div>
+      </div>
+      <button type="button" (click)="updateEmployee()">Update</button>
+    </form>
+  
+    <div *ngIf="loading" class="loading-spinner"></div>
+  
+    <table *ngIf="!loading" class="employee-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Sarf ID</th>
+          <th>Full Name</th>
+          <th>National ID</th>
+          <th>Ta2meen No</th>
+          <th>Bank Acc No</th>
+          <th>Nationality</th>
+          <th>Phone Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of filteredEmployees">
+          <td>{{employee.id}}</td>
+          <td>{{employee.sarf_Id}}</td>
+          <td>{{employee.fullName}}</td>
+          <td>{{employee.nationalId}}</td>
+          <td>{{employee.ta2meen_No}}</td>
+          <td>{{employee.bankAcc_No}}</td>
+          <td>{{employee.nationality}}</td>
+          <td>{{employee.phoneNumber}}</td>
+          <td><button (click)="selectEmployee(employee)">Update</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

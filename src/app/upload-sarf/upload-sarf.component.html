@@ -1,0 +1,15 @@
+<!-- upload-sarf.component.html -->
+
+<div class="upload-container">
+    <h2>Upload Employee Sarf Excel File</h2>
+  
+    <div class="form-group">
+      <label for="fileInput">Select Excel File:</label>
+      <input type="file" id="fileInput" (change)="onFileSelected($event)" accept=".xlsx, .xls" />
+    </div>
+  
+    <button (click)="onUpload()" [disabled]="loading">
+      {{ loading ? 'Uploading...' : 'Upload' }}
+    </button>
+  </div>
+  
